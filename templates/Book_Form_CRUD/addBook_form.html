@@ -1,0 +1,19 @@
+{% extends 'Book_Form_CRUD/index.html' %}
+{% block content %}
+    <div style="text-align: center;">
+    <p class="display-3" style="background-color:#000000;color:#FFFF99;">Add Books</p>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <table class = 'w-50 table table-light' style="border-radius:10px;background-color:#b7ebff;">
+        <thead class="thead-dark">
+            {% for field in add_form %}
+            <tr>
+                <th>{{field.label}}</th>
+                <td>{{ field }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+    </form>
+    </div>
+{% endblock %}

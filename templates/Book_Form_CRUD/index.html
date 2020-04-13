@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Books App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="background-color:#395cb6;">
+    <nav class="navbar navbar-light" style="background-color:#e00721;">
+        <a href="{% url 'index' %}"class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Book for CRUD</a>
+        <a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Django Admin Site</a>
+        <a href="{% url 'add-book' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Add Books</a>
+    </nav>
+    <br>
+    {% block content %}
+    <div class="card-columns">
+        {% for book in books %}
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+              <p class="card-text">Author : {{ book.author }}</p>
+              <p class="card-text">Number of pages : {{ book.numberOfPages }}</p>
+              <p class="card-text">Type of book : {{ book.typeOfBook }}</p>
+              <p class="card-title">Date published : {{book.datePublished}}</p>
+                <div style="text-align: center;">
+                    <a href="update/{{book.id}}" class="btn btn-warning" id = '{{book.id}}'>edit</a>
+                    <a href="delete/{{book.id}}" class="btn btn-danger" id = '{{book.id}}'>delete</a>
+                </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
+</body>
+</html>
